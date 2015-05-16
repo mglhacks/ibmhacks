@@ -10,7 +10,6 @@ from flask import _app_ctx_stack
 from bluespot import app
 from operator import itemgetter
 
-# from .api_helper import get_photo_src
 
 ### DATABASE basic functions
 def dict_factory(cursor, row):
