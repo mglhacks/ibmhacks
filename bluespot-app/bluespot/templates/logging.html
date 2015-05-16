@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset=utf-8>
+<title>Geolocation API　サンプル</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/log_ajax.js"></script>
+</head>
+<body>
+    <h1>Logging</h1>
+    <p>Log ID</p>
+    <input id="id" class="form-control" name="id" placeholder="id" value="1"/>
+    <input type="button" onClick="ajax_search();" value="Submit">
+    <br>
+    <h2>Start</h2>
+    <input type="button" value="Start" onclick="tmstr()">
+    <h2>Stop</h2>
+    <input type="button" value="Stop" onclick="tmrOff()">
+
+    <h2>Data</h2>
+
+    <div id="show_result"></div>
+
+</body>
+</html>
