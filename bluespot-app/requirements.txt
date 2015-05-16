@@ -1,0 +1,4 @@
+Flask==0.10.1
+Flask-RESTful==0.3.2
+Flask-SQLAlchemy==2.0
+numpy==1.9.2
