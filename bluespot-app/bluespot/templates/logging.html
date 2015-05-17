@@ -9,13 +9,18 @@
 <body>
     <h1>Logging</h1>
     <p>Log ID</p>
-    <input id="id" class="form-control" name="id" placeholder="id" value="1"/>
-    <input type="button" onClick="ajax_search();" value="Submit">
+    Set your log id: <input id="id" class="form-control" name="id" placeholder="id" value="1"/>
     <br>
-    <h2>Start</h2>
-    <input id="start" type="button" value="Start" onclick="tmstr(this)">
-    <h2>Stop</h2>
-    <input id="stop" type="button" value="Stop" onclick="tmrOff(this)">
+    Debug: <input type="button" onClick="ajax_search();" value="Send Once">
+    <br>
+    <div id="start-button" style="">
+        <h2>Start</h2>
+        <input id="start" type="button" value="Start" onclick="tmstr(this)">
+    </div>
+    <div id="stop-button" style="display:none;">
+        <h2>Stop</h2>
+        <input id="stop" type="button" value="Stop" onclick="tmrOff(this)">
+    </div>
 
     <h2>Data</h2>
 

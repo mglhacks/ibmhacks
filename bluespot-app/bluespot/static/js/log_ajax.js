@@ -15,8 +15,8 @@ var timer1;
 //setInterval()を使ったタイマーの起動関数
 function tmstr()
 {
-    $("button#start").disabled=true;
-    $("button#stop").disabled=false;
+    $('#start-button').hide();
+    $('#stop-button').show();
     timer1 = setInterval("tmrOn()",5000);
 }
 
@@ -36,8 +36,8 @@ function tmrOn()
 function tmrOff()
 {
     //タイマーを停止する
-    $("#start").disabled=false;
-    $("#stop").disabled=true;
+    $('#stop-button').hide();
+    $('#start-button').show();
     clearInterval(timer1);
 }
 

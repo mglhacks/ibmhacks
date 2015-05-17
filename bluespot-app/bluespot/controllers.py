@@ -62,8 +62,8 @@ def logging_api():
     q = json.loads(q)
     sensordata = request.args.get('sensordata', "{}")
     s = json.loads(sensordata)
-    # if "payload" not in sensordata:
-    #     return "sensor data error"
+    if "AmbTemp" not in sensordata:
+        return "sensor data error"
     # s = json.loads(sensordata["payload"])["sensortag"]
 
 
