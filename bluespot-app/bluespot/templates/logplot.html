@@ -3,8 +3,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <link rel="stylesheet" href="/css/my.css">
     <title>Log Chart</title>
 
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.9/require.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js"></script>
@@ -88,7 +90,7 @@
                 d3Chart.addGraph({ id: 'temp', type: 'analog', name: '温度(℃)', dataId: 522, yVal: ['ambientTemp'], data: logdata });
                 d3Chart.addGraph({ id: 'humi', type: 'analog', name: '湿度(%)', dataId: 522, yVal: ['humi'], data: logdata });
                 d3Chart.addGraph({ id: 'pressure', type: 'analog', name: '圧力(mBar)', dataId: 522, yVal: ['pressure'], data: logdata });
-                d3Chart.addGraph({ id: 'gyro', type: 'analog', name: 'gyro', dataId: 522, yVal: ['gyroX'], data: logdata });
+                // d3Chart.addGraph({ id: 'gyro', type: 'analog', name: 'gyro', dataId: 522, yVal: ['gyroX'], data: logdata });
                 d3Chart.render();
 
             }, 3000);
@@ -102,9 +104,22 @@
     <script src="/js/d3js/sample_data.js"></script>
     <script src="/js/d3js/sample_log.js"></script>
 
-    <div id="container" style="min-width: 300px;width:100%">
+  
+    <div id="container" style="height:500px;">
+        <!-- <div class="graph" style="width:100%">    </div> -->
+        <div id="googleMap" style="width:600px;height:400px;">    </div>
+    </div>
+        <div id="container" style="min-width: 300px;width:100%">
         <div class="loader"><p>Working...</p></div>
     </div>
 
+
 </body>
+<script type="text/javascript" src="/js/animation.js"></script>
+<script type="text/javascript">
+    $.when(get_data({{ log_id }})).done(function(){
+  console.log(sdata);
+  google.maps.event.addDomListener(window, 'load', initialize());
+}); 
+</script>
 </html>
