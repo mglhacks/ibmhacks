@@ -15,7 +15,9 @@ var timer1;
 //setInterval()を使ったタイマーの起動関数
 function tmstr()
 {
-  timer1 = setInterval("tmrOn()",5000);
+    $("button#start").disabled=true;
+    $("button#stop").disabled=false;
+    timer1 = setInterval("tmrOn()",5000);
 }
 
 function tmrOn()
@@ -34,13 +36,15 @@ function tmrOn()
 function tmrOff()
 {
     //タイマーを停止する
+    $("#start").disabled=false;
+    $("#stop").disabled=true;
     clearInterval(timer1);
 }
 
 // get sensor data
 function ajax_sensor() {
     $.ajax({
-        url: "api/sensor",
+        url: "/api/get_sensor",
         dataType: 'json',
         // async: false,
         data: { "data" : "data" },
@@ -51,13 +55,6 @@ function ajax_sensor() {
 }
 
 function ajax_api() {
-
-    // 操作対象のフォーム要素を取得
-    var $form = $("#the-form");
-
-    // 送信ボタンを取得
-    // （後で使う: 二重送信を防止する。）
-    var $button = $form.find('button');
 
     // Geo location
     //ユーザーの現在の位置情報を取得
@@ -87,14 +84,11 @@ function ajax_api() {
 
         // 送信前
         beforeSend: function(xhr, settings) {
-            // ボタンを無効化し、二重送信を防止
-            $button.attr('disabled', true);
             $('#loading-indicator').show();
         },
         // 応答後
         complete: function(xhr, textStatus) {
-            // ボタンを有効化し、再送信を許可
-            $button.attr('disabled', false);
+
             $('#loading-indicator').hide();
         },
 
@@ -110,7 +104,7 @@ function ajax_api() {
             out.append('latitude: ' + latitude + '<br>');
             out.append('longitude' + longitude + '<br>');
 
-            var sdata = $.parseJSON(sensordata["payload"])["sensortag"]
+            var sdata = sensordata;
             var items = [];
             $.each(sdata, function(key, val) {
               items.push('<li id="' + key + '">' + key + ': ' + val + '</li>');

@@ -16,6 +16,7 @@ import json
 from bluespot import app, db
 from .database_helper import *
 from .models import Logdata
+import urllib2
 
 # route for INDEX
 @app.route("/")
@@ -29,10 +30,28 @@ def logging():
 
 # api
 @app.route("/api/sensor")
-def get_sensor():
-    jsondata = { "topic": "iot-2/type/iotsample-ti-bbst/id/784b87a3d007/evt/sample/fmt/json", "payload": "{\"sensortag\":{\"deviceId\":\"784b87a3d007\",\"time\":\"2015/05/16 17:34:47\",\"humi\":64.1,\"temp\":28.1,\"accelX\":-0.6,\"accelY\":-1.6,\"accelZ\":-5.4,\"gyroX\":-250,\"gyroY\":-170,\"gyroZ\":-116.9,\"objectTemp\":28.9,\"ambientTemp\":27.9,\"magX\":-61.7,\"magY\":60.4,\"magZ\":119.4,\"pressure\":1004.4},\"id\":\"b4994c64b44f\"}", "deviceId": "784b87a3d007", "deviceType": "iotsample-ti-bbst", "eventType": "sample", "format": "json", "_msgid": "ca84c263.357b4" }
+def sensor_json():
+    jsondata = {
+          "AmbTemp": "26.5625",
+          "IRTemp": "22.57258",
+          "humidity": "54.45434",
+          "magX": "5.889893",
+          "magY": "-4.455566",
+          "magZ": "2.441406",
+          "baroPres": "1010.84",
+          "baroHeight": "6.300066",
+          "gyroX": "-2.632141",
+          "gyroY": "-1.00708",
+          "gyroZ": "-0.3356934"
+        }
 
     return jsonify(jsondata)
+
+@app.route("/api/get_sensor")
+def get_sensor():
+    response = urllib2.urlopen('http://ants0516.mybluemix.net/aaa')
+    data = response.read()
+    return data
 
 @app.route('/api/logging')
 def logging_api():
@@ -42,19 +61,19 @@ def logging_api():
     q = request.args.get('q', "{}")
     q = json.loads(q)
     sensordata = request.args.get('sensordata', "{}")
-    sensordata = json.loads(sensordata)
-    if "payload" not in sensordata:
-        return "sensor data error"
-    s = json.loads(sensordata["payload"])["sensortag"]
+    s = json.loads(sensordata)
+    # if "payload" not in sensordata:
+    #     return "sensor data error"
+    # s = json.loads(sensordata["payload"])["sensortag"]
 
 
 
     print "id: " + str(q["id"])
     print "gps: ", q["latitude"], q["longitude"]
-    print "temp: ", s["temp"]
+    print "temp: ", s["AmbTemp"]
 
     logdata = Logdata(q["id"], q["latitude"], q["longitude"],\
-         q["date"], s["humi"], s["temp"], s["accelX"], s["accelY"], s["accelZ"], s["gyroX"], s["gyroY"], s["gyroZ"], s["objectTemp"], s["ambientTemp"], s["magX"], s["magY"], s["magZ"], s["pressure"])
+         q["date"], s["humidity"], s["AmbTemp"], 0, 0, 0, s["gyroX"], s["gyroY"], s["gyroZ"], s["IRTemp"], s["AmbTemp"], s["magX"], s["magY"], s["magZ"], s["baroPres"])
     db.session.add(logdata)
     db.session.commit()
 
