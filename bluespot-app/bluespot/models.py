@@ -76,4 +76,5 @@ class Logdata(db.Model):
         result = {}
         for key in self.__mapper__.c.keys():
             result[key] = getattr(self, key)
+        result["DateTime"] = self.time.replace("/", "-").replace(" ", "T")
         return result

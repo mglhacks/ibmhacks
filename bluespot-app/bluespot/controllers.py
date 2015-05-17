@@ -66,8 +66,6 @@ def logging_api():
         return "sensor data error"
     # s = json.loads(sensordata["payload"])["sensortag"]
 
-
-
     print "id: " + str(q["id"])
     print "gps: ", q["latitude"], q["longitude"]
     print "temp: ", s["AmbTemp"]
@@ -89,7 +87,11 @@ def logview(log_id=1):
     data = jsonify({'data': [ r.as_dict() for r in qry ]})
 
     resp = data
-    return resp
+    return resp, 200, {'Access-Control-Allow-Origin': '*'}
+
+@app.route('/logplot/<int:log_id>')
+def logplot(log_id=1):
+    return render_template("logplot.html", log_id=log_id)
 
 # tests
 @app.route('/test')

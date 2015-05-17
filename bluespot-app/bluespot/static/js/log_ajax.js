@@ -46,7 +46,7 @@ function ajax_sensor() {
     $.ajax({
         url: "/api/get_sensor",
         dataType: 'json',
-        // async: false,
+        async: false,
         data: { "data" : "data" },
         success: function(json) {
             sensordata = json;
