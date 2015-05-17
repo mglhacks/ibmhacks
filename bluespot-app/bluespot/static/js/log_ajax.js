@@ -99,18 +99,18 @@ function ajax_api() {
             var out = $("#show_result")
             out.empty();
             out.append('N = ' + N + '<br>');
-            out.append('Date: ' + date + '<br>');
+            out.append('<p>Date: ' + date + '</p>');
             out.append('<p>あなたの現在位置</p>');
-            out.append('latitude: ' + latitude + '<br>');
-            out.append('longitude' + longitude + '<br>');
+            out.append('<p>latitude: ' + latitude + '</p>');
+            out.append('<p>longitude' + longitude + '</p>');
 
             var sdata = sensordata;
             var items = [];
             $.each(sdata, function(key, val) {
-              items.push('<li id="' + key + '">' + key + ': ' + val + '</li>');
+              items.push('<p id="' + key + '">' + key + ': ' + val + '</p>');
             });
             //サーバから受け取った値をULリストにしてBody内に挿入
-            $('<ul/>', {
+            $('<h4/>', {
               'class': 'my-new-list',
               html: items.join('')
             }).appendTo(out);
