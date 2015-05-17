@@ -38,7 +38,7 @@ function initialize() {
   var mapOptions = {
     // samurai
     center: new google.maps.LatLng(Number(d[parseInt(d.length/2)].latitude), Number(d[parseInt(d.length/2)].longitude)), 
-    zoom: 15,
+    zoom: 16,
     mapTypeId: google.maps.MapTypeId.TERRAIN
   };
 
@@ -89,6 +89,10 @@ function initialize() {
       // Create the polyline and add the symbol to it via the 'icons' property.
       line = new google.maps.Polyline({
         path: lineCoordinates,
+        strokeColor:"#FD5959",
+        strokeOpacity:0.8,
+        strokeWeight:1.5,
+
         icons: [{
           icon: lineSymbol,
           offset: '100%'
@@ -105,12 +109,12 @@ function initialize() {
 function animateCircle() {
   var count = 0;
   window.setInterval(function() {
-    count = (count + 1) % 200;
+    count = (count + 1) % 100;
 
     var icons = line.get('icons');
     icons[0].offset = (count / 2) + '%';
     line.set('icons', icons);
-  }, 20);
+  }, 40);
 }
 
 function populate(){
