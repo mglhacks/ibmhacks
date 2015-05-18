@@ -63,7 +63,7 @@ def logging_api():
     sensordata = request.args.get('sensordata', "{}")
     s = json.loads(sensordata)
 
-    if q["latitude"] == "0":
+    if q["latitude"] == "0" or q["latitude"] == 0:
         return "GPS data is null"
 
     if "AmbTemp" not in sensordata:
