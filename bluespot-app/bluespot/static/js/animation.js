@@ -70,7 +70,7 @@ function initialize() {
           position:pos,
         });
         marker.setMap(map);
-        $("#para").text($(this).height() + " metr");
+        $("#para").text("Elevation: " + $(this).height() + " metr");
       });
       $( ".bar" ).mouseout(function() {
         var id = $(this).attr("id");
@@ -129,6 +129,21 @@ function populate(){
           //   scale: 10
           // },
         });
+
+        // var markerOptions = {
+        //   strokeColor: '#FF0000',
+        //   strokeOpacity: 0.8,
+        //   strokeWeight: 2,
+        //   fillColor: '#FF0000',
+        //   fillOpacity: 0.35,
+        //   map: map,
+        //   center: pos,
+        //   radius: 10
+        // };
+        // // Add the circle for this city to the map.
+        // cityCircle = new google.maps.Circle(markerOptions);
+
+
         markers.push(marker);
         //marker.setMap(map);
       }
@@ -148,7 +163,7 @@ function elevate () {
         if (results[res]) {
             // console.log(results[res].elevation);
             // setTimeout(elevations.push(results[res].elevation), 10);
-            console.log("#"+res + ": " + results[res].elevation + "px");
+            // console.log("#"+res + ": " + results[res].elevation + "px");
             var height = parseInt(results[res].elevation*10);
             $("#"+res).attr("style", "border-top-width: " + height +"px;width: 4px; height: "+ (60-height)+"px;");
             // elevations[res] = results[res].elevation;
