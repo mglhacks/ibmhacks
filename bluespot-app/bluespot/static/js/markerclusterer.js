@@ -80,7 +80,8 @@ function MarkerClusterer(map, opt_markers, opt_options) {
   this.clusters_ = [];
 
   this.sizes = [53, 56, 66, 78, 90];
-
+  // this.sizes = [100, 56, 66, 78, 90];
+  console.log(this);
   /**
    * @private
    */
@@ -187,8 +188,9 @@ function MarkerClusterer(map, opt_markers, opt_options) {
  * @private
  */
 MarkerClusterer.prototype.MARKER_CLUSTER_IMAGE_PATH_ =
-    'http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/' +
-    'images/m';
+    // 'http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/' +
+    // 'images/m';
+    '/static/img/m';
 
 
 /**

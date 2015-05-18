@@ -6,8 +6,8 @@ html, body, #map-canvas {
 .bar{
 	border-top: 0 solid #fff;
 	margin-right: 1px;
-	background-color: #eae4f1;
-	height: 100%;
+	background-color: #cdb6aa;
+	/*height: 100%;*/
 	float: left;
 	cursor: pointer;
 	position: relative;
