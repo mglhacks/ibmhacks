@@ -73,31 +73,31 @@
         var logdata = sdata.data
 
 
-        $(function () {
+        // $(function () {
 
-            requirejs.config({
-                "baseUrl": "./",
-                "paths": {
-                    "app": "/js/d3js/",
-                    'moment': 'http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.2.1/moment.min',
-                    'underscore': 'http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min'
-                }
-            });
-
-
-            require(['app/d3.chart'], function (d3Chart) {
-                d3Chart.init({ container: '#container', xDim: 'time' });
-
-                d3Chart.addGraph({ id: 'temp', type: 'analog', name: '温度(℃)', dataId: 522, yVal: ['ambientTemp'], data: logdata });
-                d3Chart.addGraph({ id: 'humi', type: 'analog', name: '湿度(%)', dataId: 522, yVal: ['humi'], data: logdata });
-                d3Chart.addGraph({ id: 'pressure', type: 'analog', name: '圧力(mBar)', dataId: 522, yVal: ['pressure'], data: logdata });
-                // d3Chart.addGraph({ id: 'gyro', type: 'analog', name: 'gyro', dataId: 522, yVal: ['gyroX'], data: logdata });
-                d3Chart.render();
-
-            }, 3000);
+        //     requirejs.config({
+        //         "baseUrl": "./",
+        //         "paths": {
+        //             "app": "/js/d3js/",
+        //             'moment': 'http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.2.1/moment.min',
+        //             'underscore': 'http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min'
+        //         }
+        //     });
 
 
-            });
+        //     require(['app/d3.chart'], function (d3Chart) {
+        //         d3Chart.init({ container: '#container', xDim: 'time' });
+
+        //         d3Chart.addGraph({ id: 'temp', type: 'analog', name: '温度(℃)', dataId: 522, yVal: ['ambientTemp'], data: logdata });
+        //         d3Chart.addGraph({ id: 'humi', type: 'analog', name: '湿度(%)', dataId: 522, yVal: ['humi'], data: logdata });
+        //         d3Chart.addGraph({ id: 'pressure', type: 'analog', name: '圧力(mBar)', dataId: 522, yVal: ['pressure'], data: logdata });
+        //         // d3Chart.addGraph({ id: 'gyro', type: 'analog', name: 'gyro', dataId: 522, yVal: ['gyroX'], data: logdata });
+        //         d3Chart.render();
+
+        //     }, 3000);
+
+
+        //     });
 
     </script>
 </head>
@@ -116,7 +116,7 @@
 
 
 </body>
-<script type="text/javascript" src="/js/animation.js"></script>
+<script type="text/javascript" src="/js/animationyama.js"></script>
 <script type="text/javascript">
     $.when(get_data({{ log_id }})).done(function(){
   console.log(sdata);
