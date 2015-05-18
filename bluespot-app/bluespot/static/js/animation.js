@@ -38,7 +38,7 @@ function initialize() {
   var mapOptions = {
     // samurai
     center: new google.maps.LatLng(Number(d[parseInt(d.length/2)].latitude), Number(d[parseInt(d.length/2)].longitude)), 
-    zoom: 16,
+    zoom: 14,
     mapTypeId: google.maps.MapTypeId.TERRAIN
   };
 
@@ -100,7 +100,7 @@ function initialize() {
         map: map
       });
 
-      animateCircle();
+      // animateCircle();
       //elevate();
     }
 
@@ -177,7 +177,8 @@ function elevate () {
       var d = jQuery.Deferred(), 
       p=d.promise();
       //You can chain jQuery promises using .then
-      p.then(populate).then(elevate);
+      // p.then(populate).then(elevate);
+      p.then(populate);
       d.resolve();
     }
 

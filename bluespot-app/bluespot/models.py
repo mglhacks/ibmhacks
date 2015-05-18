@@ -45,7 +45,7 @@ class Logdata(db.Model):
     pressure = db.Column(db.Text)
     other = db.Column(db.Text)
 
-    def __init__(self, log_id, latitude, longitude, time, humi, temp, accelX, accelY, accelZ, gyroX, gyroY, gyroZ, objectTemp, ambientTemp, magX, magY, magZ, pressure, other=""):
+    def __init__(self, log_id, latitude = '0', longitude = '0', time = '0', humi = '0', temp = '0', accelX = '0', accelY = '0', accelZ = '0', gyroX = '0', gyroY = '0', gyroZ = '0', objectTemp = '0', ambientTemp = '0', magX = '0', magY = '0', magZ = '0', pressure = '0', other=""):
         self.log_id = log_id
         self.latitude = latitude
         self.longitude = longitude
@@ -65,6 +65,7 @@ class Logdata(db.Model):
         self.magZ = magZ
         self.pressure = pressure
         self.other = other
+
 
     # def __repr__(self):
     #     return '<log %d>' % self.id

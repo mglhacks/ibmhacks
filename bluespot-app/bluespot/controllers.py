@@ -98,6 +98,10 @@ def logplot(log_id=1):
 def test_page():
     return "ok"
 
+@app.route('/logyama/<int:log_id>')
+def logyama(log_id=1):
+    return render_template("logyama.html", log_id=log_id)
+
 
 ### static file helpers
 # route for static js, css files
