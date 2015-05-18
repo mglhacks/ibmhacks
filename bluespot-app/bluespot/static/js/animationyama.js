@@ -251,6 +251,7 @@ function spot1(){
 function takaoCluster ()
 {
     // takao marker cluster
+  var takaos = []
   var takao = [
       [35.63109133567183, 139.2564631998539],
       [35.63107825531919, 139.25645783543587],
@@ -416,10 +417,9 @@ function takaoCluster ()
     var marker=new google.maps.Marker({
           position:pos,
         });
-    marker.setMap(map);
+    takaos.push(marker)
   };
-  var mcOptions = {gridSize: 50, maxZoom: 15};
-  var markerCluster = new MarkerClusterer(map, takao);
+  var markerCluster = new MarkerClusterer(map, takaos);
 }
 
 function elevate () {
@@ -449,7 +449,7 @@ function elevate () {
       p=d.promise();
       //You can chain jQuery promises using .then
       // p.then(populate).then(elevate);
-      p.then(populate).then(spot1);
+      p.then(populate).then(spot1).then(takaoCluster);
       d.resolve();
     }
 
