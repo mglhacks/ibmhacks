@@ -69,7 +69,7 @@ def logging_api():
     if "AmbTemp" not in sensordata:
         # log gps data only
         logdata = Logdata(q["id"], q["latitude"], q["longitude"],\
-         q["date"], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+         q["date"], 0, 0, q["accelX"], q["accelY"], q["accelZ"], 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
         db.session.add(logdata)
         db.session.commit()
@@ -81,7 +81,7 @@ def logging_api():
     print "temp: ", s["AmbTemp"]
 
     logdata = Logdata(q["id"], q["latitude"], q["longitude"],\
-         q["date"], s["humidity"], s["AmbTemp"], 0, 0, 0, s["gyroX"], s["gyroY"], s["gyroZ"], s["IRTemp"], s["AmbTemp"], s["magX"], s["magY"], s["magZ"], s["baroPres"])
+         q["date"], s["humidity"], s["AmbTemp"], q["accelX"], q["accelY"], q["accelZ"], s["gyroX"], s["gyroY"], s["gyroZ"], s["IRTemp"], s["AmbTemp"], s["magX"], s["magY"], s["magZ"], s["baroPres"])
     db.session.add(logdata)
     db.session.commit()
 
