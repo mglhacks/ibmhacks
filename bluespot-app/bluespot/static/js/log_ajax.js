@@ -5,7 +5,31 @@ var sensordata = {};
 var date = "";
 var N = 0;
 
+// accel event listener
+var x = 0;
+var y = 0;
+var z = 0;
+window.addEventListener("devicemotion", function(event1){
+    x = event1.acceleration.x;
+    y = event1.acceleration.y;
+    z = event1.acceleration.z;
+}, true);
+
+function show_accel(){
+    var result1 = document.getElementById("show_accel");
+    result1.innerHTML =
+        "accelX："+ Math.round(x * 10) / 10 +"<br>" +
+        "accelY："+ Math.round(y * 10) / 10 +"<br>" +
+        "accelZ："+ Math.round(z * 10) / 10;
+}
+
 function ajax_search() {
+    var d = new Date();
+    var month = d.getMonth()+1, day = d.getDate();
+    var hours = d.getHours(), minutes = d.getMinutes(), seconds = d.getSeconds();
+    date = d.getFullYear() + '/' +
+        (month<10 ? '0' : '') + month + '/' +
+        (day<10 ? '0' : '') + day + (hours < 10 ? " 0" : " ") + hours + (minutes < 10 ? ":0" : ":") + minutes + (seconds < 10 ? ":0" : ":") + seconds;
     ajax_sensor();
     ajax_api();
 }
@@ -70,6 +94,9 @@ function ajax_api() {
     query.latitude = latitude;
     query.longitude = longitude;
     query.date = date;
+    query.accelX = x;
+    query.accelY = y;
+    query.accelZ = z;
 
 
     console.log(JSON.stringify(query));

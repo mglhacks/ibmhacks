@@ -62,8 +62,18 @@ def logging_api():
     q = json.loads(q)
     sensordata = request.args.get('sensordata', "{}")
     s = json.loads(sensordata)
+
+    if q["latitude"] == "0" or q["latitude"] == 0:
+        return "GPS data is null"
+
     if "AmbTemp" not in sensordata:
-        return "sensor data error"
+        # log gps data only
+        logdata = Logdata(q["id"], q["latitude"], q["longitude"],\
+         q["date"], 0, 0, q["accelX"], q["accelY"], q["accelZ"], 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+        db.session.add(logdata)
+        db.session.commit()
+        return "sensor data error, logged GPS"
     # s = json.loads(sensordata["payload"])["sensortag"]
 
     print "id: " + str(q["id"])
@@ -71,11 +81,11 @@ def logging_api():
     print "temp: ", s["AmbTemp"]
 
     logdata = Logdata(q["id"], q["latitude"], q["longitude"],\
-         q["date"], s["humidity"], s["AmbTemp"], 0, 0, 0, s["gyroX"], s["gyroY"], s["gyroZ"], s["IRTemp"], s["AmbTemp"], s["magX"], s["magY"], s["magZ"], s["baroPres"])
+         q["date"], s["humidity"], s["AmbTemp"], q["accelX"], q["accelY"], q["accelZ"], s["gyroX"], s["gyroY"], s["gyroZ"], s["IRTemp"], s["AmbTemp"], s["magX"], s["magY"], s["magZ"], s["baroPres"])
     db.session.add(logdata)
     db.session.commit()
 
-    data = "OK"
+    data = "GPS, sensordata OK"
     resp = data
 
     return resp
