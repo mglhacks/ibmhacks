@@ -44,49 +44,6 @@ function initialize() {
 
 
   map = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
-  
-  var spots = [
-              
-                ['<div><h3><a href="http://takaozanyuho.com/food/500.html" class="arrow">大見晴亭</a></h3><br>業種：蕎麦 </div>',35.6250182,139.24325369999997,'icon01'],
-          
-        
-                ['<div><h3><a href="http://takaozanyuho.com/food/341.html" class="arrow">ごまどころ 権現茶屋</a></h3><br>業種：ラーメン 茶屋 蕎麦 </div>',35.6274313,139.25031119999994,'icon01'],
-          
-        
-                ['<div><h3><a href="http://takaozanyuho.com/spot/272.html" class="arrow">仏舎利塔</a></h3><br>関連：ファミリー向き 歴史系 </div>',35.628230546916114,139.25118358187865,'icon02'],
-          
-        
-                ['<div><h3><a href="http://takaozanyuho.com/spot/249.html" class="arrow">天狗の腰掛杉</a></h3><br>関連：歴史系 自然系 </div>',35.626347971425574,139.2504192592163,'icon02'],
-          
-        
-                ['<div><h3><a href="http://takaozanyuho.com/spot/246.html" class="arrow">浄心門</a></h3><br>関連：歴史系 </div>',35.63002804398336,139.25332677378844,'icon02'],
-          
-        
-                ['<div><h3><a href="http://takaozanyuho.com/food/240.html" class="arrow">十一丁目茶屋</a></h3><br>業種：蕎麦 </div>',35.6299806,139.25515229999996,'icon01'],
-          
-        
-                ['<div><h3><a href="http://takaozanyuho.com/spot/241.html" class="arrow">霞台展望台</a></h3><br>関連：デート向き ファミリー向き 自然系 </div>',35.630372497081,139.25571930422973,'icon02'],
-          
-        
-                ['<div><h3><a href="http://takaozanyuho.com/spot/239.html" class="arrow">男坂・女坂</a></h3><br>関連：歴史系 自然系 </div>',35.629055719003645,139.25186765208434,'icon02'],
-          
-        
-                ['<div><h3><a href="http://takaozanyuho.com/spot/236.html" class="arrow">たこ杉・ひっぱりだこ</a></h3><br>関連：歴史系 自然系 </div>',35.63012120789552,139.2544605667954,'icon02'],
-          
-        
-                ['<div><h3><a href="http://takaozanyuho.com/spot/235.html" class="arrow">さる園（野草園）</a></h3><br>関連：デート向き ファミリー向き 自然系 </div>',35.629925,139.25493800000004,'icon02'],
-          
-        
-                ['<div><h3><a href="http://takaozanyuho.com/spot/32.html" class="arrow">薬王院</a></h3><br>関連：デート向き ファミリー向き 歴史系 </div>',35.62590517454949,139.25024682698358,'icon02'],
-          ];
-
-  for (var i = spots.length - 1; i >= 0; i--) {
-    var marker = new google.maps.Marker({
-      position: new google.maps.LatLng(spots[i][1], spots[i][2]),
-      map: map,
-      title: 'Hello World!'
-      });
-    };
 
    // Create an ElevationService
    elevator = new google.maps.ElevationService();
@@ -196,86 +153,94 @@ function populate(){
     // alert("populate");
   }
 
-function spots(){
+function spot1(){
   /* ********************
   // marker
   // ****************** */
-  var markerInit = function() {
-    var markers = [
-      ['<div><h3><a href="http://takaozanyuho.com/food/500.html" class="arrow">大見晴亭</a></h3><br>業種：蕎麦 </div>',35.6250182,139.24325369999997,'icon01'],
+  // spots!!!!
+  var spots = [
+  // var spots = [
+              
+    ['<div><h3><a href="http://takaozanyuho.com/food/500.html" class="arrow">大見晴亭</a></h3><br>業種：蕎麦 </div>',35.6250182,139.24325369999997,'icon_res', '大見晴亭', '業種：蕎麦'],
 
 
-      ['<div><h3><a href="http://takaozanyuho.com/food/341.html" class="arrow">ごまどころ 権現茶屋</a></h3><br>業種：ラーメン 茶屋 蕎麦 </div>',35.6274313,139.25031119999994,'icon01'],
+    ['<div><h3><a href="http://takaozanyuho.com/food/341.html" class="arrow">ごまどころ 権現茶屋</a></h3><br>業種：ラーメン 茶屋 蕎麦 </div>',35.6274313,139.25031119999994,'icon_res', 'ごまどころ 権現茶屋', '茶屋 蕎麦'],
 
 
-      ['<div><h3><a href="http://takaozanyuho.com/spot/272.html" class="arrow">仏舎利塔</a></h3><br>関連：ファミリー向き 歴史系 </div>',35.628230546916114,139.25118358187865,'icon02'],
+    ['<div><h3><a href="http://takaozanyuho.com/spot/272.html" class="arrow">仏舎利塔</a></h3><br>関連：ファミリー向き 歴史系 </div>',35.628230546916114,139.25118358187865,'icon_camp', '仏舎利塔', '関連：ファミリー向き 歴史系'],
 
 
-      ['<div><h3><a href="http://takaozanyuho.com/spot/249.html" class="arrow">天狗の腰掛杉</a></h3><br>関連：歴史系 自然系 </div>',35.626347971425574,139.2504192592163,'icon02'],
+    ['<div><h3><a href="http://takaozanyuho.com/spot/249.html" class="arrow">天狗の腰掛杉</a></h3><br>関連：歴史系 自然系 </div>',35.626347971425574,139.2504192592163,'icon_camp', '天狗の腰掛杉', '関連：歴史系 自然系'],
 
 
-      ['<div><h3><a href="http://takaozanyuho.com/spot/246.html" class="arrow">浄心門</a></h3><br>関連：歴史系 </div>',35.63002804398336,139.25332677378844,'icon02'],
+    ['<div><h3><a href="http://takaozanyuho.com/spot/246.html" class="arrow">浄心門</a></h3><br>関連：歴史系 </div>',35.63002804398336,139.25332677378844,'icon_camp', '浄心門', '関連：歴史系'],
 
 
-      ['<div><h3><a href="http://takaozanyuho.com/food/240.html" class="arrow">十一丁目茶屋</a></h3><br>業種：蕎麦 </div>',35.6299806,139.25515229999996,'icon01'],
+    ['<div><h3><a href="http://takaozanyuho.com/food/240.html" class="arrow">十一丁目茶屋</a></h3><br>業種：蕎麦 </div>',35.6299806,139.25515229999996,'icon_res', '十一丁目茶屋', '業種：蕎麦'],
 
 
-      ['<div><h3><a href="http://takaozanyuho.com/spot/241.html" class="arrow">霞台展望台</a></h3><br>関連：デート向き ファミリー向き 自然系 </div>',35.630372497081,139.25571930422973,'icon02'],
+    ['<div><h3><a href="http://takaozanyuho.com/spot/241.html" class="arrow">霞台展望台</a></h3><br>関連：デート向き ファミリー向き 自然系 </div>',35.630372497081,139.25571930422973,'icon_camp', '霞台展望台', '関連：デート向き ファミリー向き 自然系'],
 
 
-      ['<div><h3><a href="http://takaozanyuho.com/spot/239.html" class="arrow">男坂・女坂</a></h3><br>関連：歴史系 自然系 </div>',35.629055719003645,139.25186765208434,'icon02'],
+    ['<div><h3><a href="http://takaozanyuho.com/spot/239.html" class="arrow">男坂・女坂</a></h3><br>関連：歴史系 自然系 </div>',35.629055719003645,139.25186765208434,'icon_camp', '男坂・女坂', '関連：歴史系 自然系'],
 
 
-      ['<div><h3><a href="http://takaozanyuho.com/spot/236.html" class="arrow">たこ杉・ひっぱりだこ</a></h3><br>関連：歴史系 自然系 </div>',35.63012120789552,139.2544605667954,'icon02'],
+    ['<div><h3><a href="http://takaozanyuho.com/spot/236.html" class="arrow">たこ杉・ひっぱりだこ</a></h3><br>関連：歴史系 自然系 </div>',35.63012120789552,139.2544605667954,'icon_camp', 'たこ杉・ひっぱりだこ', '関連：歴史系 自然系'],
 
 
-      ['<div><h3><a href="http://takaozanyuho.com/spot/235.html" class="arrow">さる園（野草園）</a></h3><br>関連：デート向き ファミリー向き 自然系 </div>',35.629925,139.25493800000004,'icon02'],
+    ['<div><h3><a href="http://takaozanyuho.com/spot/235.html" class="arrow">さる園（野草園）</a></h3><br>関連：デート向き ファミリー向き 自然系 </div>',35.629925,139.25493800000004,'icon_camp', 'さる園（野草園）', '関連：デート向き ファミリー向き 自然系'],
 
 
-      ['<div><h3><a href="http://takaozanyuho.com/spot/32.html" class="arrow">薬王院</a></h3><br>関連：デート向き ファミリー向き 歴史系 </div>',35.62590517454949,139.25024682698358,'icon02'],
-    ];
+    ['<div><h3><a href="http://takaozanyuho.com/spot/32.html" class="arrow">薬王院</a></h3><br>関連：デート向き ファミリー向き 歴史系 </div>',35.62590517454949,139.25024682698358,'icon_camp', '薬王院', '関連：デート向き ファミリー向き 歴史系'],
+          ];
 
-    for(var i = 0; i < markers.length; i++) {
-      var marker = markers[i],
-          latlng = new google.maps.LatLng(marker[1], marker[2]);
-          // category =  marker[3],
-          // name = marker[0];
-      // createMarker(latlng, category, name);
+  var icon_root_url = 'https://chart.googleapis.com/chart?';
+  var icon_default = {
+    url: icon_root_url + 'chst=d_map_pin_letter&chld=A|FF0000|0000FF'
+  }
+  var icon_res = {
+    url: icon_root_url + 'chst=d_map_pin_icon&chld=restaurant|FE9A2E'
+  }
+  var icon_camp = {
+    url: icon_root_url + 'chst=d_map_pin_icon&chld=camping|ADDE30'
+  }
+
+  var infoWindow = {};
+  infoWindow = new google.maps.InfoWindow();
+  var createSpot = function(latlng, category, name) {
+        var icons;
+        if(category == 'icon_res'){
+          icons = icon_res;
+        }
+        else if(category == 'icon_camp'){
+          icons = icon_camp;
+        }
+        else {
+          icons = icon_default;
+        }
+
+        var spot = new google.maps.Marker({
+          map: map,
+          position: latlng,
+          icon: icons,
+          title: name,
+          clickable: true  //★クリック有効無効
+        });
+
+        google.maps.event.addListener(spot, 'click', function() {
+          html = "<b>" + name + "</b> <br/>" ;
+          infoWindow.setContent(html);
+          infoWindow.open(map,spot);
+        });
+  };
+  for(var i = 0; i < spots.length; i++) {
+      var spot = spots[i],
+        latlng = new google.maps.LatLng(spot[1], spot[2]),
+        category =  spot[3],
+        name = spot[0];
+
+      createSpot(latlng, category, name);
     }
-};
-
-  // var createMarker = function(latlng, category, name) {
-  //       var icon01Url = "http://takaozanyuho.com/images/g_icon_i.png",
-  //         icon02Url = "http://takaozanyuho.com/images/g_icon_k.png",
-  //         size,
-  //         origin,
-  //         iconPoint = new google.maps.Point(30, 53),
-  //         iconSize = new google.maps.Size(60, 53);//◆縮小
-     
-  //       var icon01Icon = new google.maps.MarkerImage(icon01Url, size, origin, iconPoint, iconSize),
-  //         icon02Icon = new google.maps.MarkerImage(icon02Url, size, origin, iconPoint, iconSize);
-     
-  //       var customIcons = {
-  //         icon01: {icon:icon01Icon},
-  //         icon02: {icon:icon02Icon}
-  //       };
-     
-  //       var icon = customIcons[category] || {};
-
-  //       var marker = new google.maps.Marker({
-  //         map: map,
-  //         position: latlng,
-  //         icon: icon.icon,
-  //         title: name,
-  //         clickable: true  //★クリック有効無効
-  //       });
-
-  //       google.maps.event.addListener(marker, 'click', function() {
-  //         html = "<b>" + name + "</b> <br/>" ;
-  //         infoWindow.setContent(html);
-  //         infoWindow.open(map,marker);
-  //       });
-  // };
 
 }
 
@@ -306,7 +271,7 @@ function elevate () {
       p=d.promise();
       //You can chain jQuery promises using .then
       // p.then(populate).then(elevate);
-      p.then(populate);
+      p.then(populate).then(spot1);
       d.resolve();
     }
 
