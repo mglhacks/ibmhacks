@@ -62,8 +62,18 @@ def logging_api():
     q = json.loads(q)
     sensordata = request.args.get('sensordata', "{}")
     s = json.loads(sensordata)
+
+    if q["latitude"] == "0":
+        return "GPS data is null"
+
     if "AmbTemp" not in sensordata:
-        return "sensor data error"
+        # log gps data only
+        logdata = Logdata(q["id"], q["latitude"], q["longitude"],\
+         q["date"], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+        db.session.add(logdata)
+        db.session.commit()
+        return "sensor data error, logged GPS"
     # s = json.loads(sensordata["payload"])["sensortag"]
 
     print "id: " + str(q["id"])
@@ -75,7 +85,7 @@ def logging_api():
     db.session.add(logdata)
     db.session.commit()
 
-    data = "OK"
+    data = "GPS, sensordata OK"
     resp = data
 
     return resp
