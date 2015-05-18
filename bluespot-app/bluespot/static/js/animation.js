@@ -10,6 +10,7 @@
  var sdata = {};
  var elevations = [];//new Array(d.length);
  var d;
+ var shortUrl ="";
 
   var lineCoordinates = [];
   var locations = [];
@@ -30,6 +31,20 @@
  });
 }
 
+function getShortUrl(url){
+   var accessToken = '3de458e853256897c508c389d654778ef6a02f4c';
+   var url = 'https://api-ssl.bitly.com/v3/shorten?access_token=' + accessToken + '&longUrl=' + encodeURIComponent(url);
+
+    $.getJSON(
+        url,
+        {},
+        function(response)
+        {
+            shortUrl = response.data.url;
+        }
+    );
+    //console.log(shortUrl);
+};
 
 function initialize() {
 
@@ -51,7 +66,7 @@ function initialize() {
   // google.maps.event.addListener(map, 'click', getElevation);
   run();
 
-  console.log(elevations);
+  // console.log(elevations);
   
   //Clusterer
   var mcOptions = {gridSize: 50, maxZoom: 15};
@@ -118,6 +133,8 @@ function animateCircle() {
 }
 
 function populate(){
+    getShortUrl("http://angir.mn");
+    console.log(shortUrl);
     for (var i = 0; i < d.length; i++) {
       if (Number(d[i].latitude)>0){
         var pos = new google.maps.LatLng(Number(d[i].latitude), Number(d[i].longitude));
@@ -153,7 +170,6 @@ function populate(){
 
 function elevate () {
     //Add elevation
-  // alert("elevate");
   var positionalRequest = { 'locations': lineCoordinates };
 
   elevator.getElevationForLocations(positionalRequest, function (results, status) {

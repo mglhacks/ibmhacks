@@ -92,10 +92,12 @@ function initialize() {
    elevator = new google.maps.ElevationService();
   // Add a listener for the click event and call getElevation on that location
   // google.maps.event.addListener(map, 'click', getElevation);
+  google.maps.event.addListener(map, 'click', setMarker);
+  google.maps.event.addListener(map, 'rightclick', removeMarker);
   run();
 
   console.log(elevations);
-  
+  markers = null;
   //Clusterer
   var mcOptions = {gridSize: 50, maxZoom: 15};
   var markerCluster = new MarkerClusterer(map, markers);
@@ -309,7 +311,6 @@ function elevate () {
     }
 
 function getElevation(event) {
-
   var locations = [];
 
   // Retrieve the clicked location and push it on the array
@@ -339,4 +340,33 @@ function getElevation(event) {
       alert('Elevation service failed due to: ' + status);
     }
   });
+}
+
+var testMarkers = [];
+
+function setMarker(event) {
+
+  // Retrieve the clicked location and push it on the array
+  var clickedLocation = event.latLng;
+  console.log("Added " + clickedLocation.lat() + " " + clickedLocation.lng());
+  marker=new google.maps.Marker({
+          position:clickedLocation,
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 10
+          }
+        });
+  marker.setMap(map);
+  testMarkers.push(marker);
+  $("#markerData").append("<div style='position: relative; right: 20px; top:0px;'> " + clickedLocation.lat() + " " + clickedLocation.lng() + "</div>");
+}
+
+function removeMarker(event) {
+
+  // Retrieve the clicked location and push it on the array
+  var clickedLocation = event.latLng; 
+  console.log("Removed " + clickedLocation.lat() + " " + clickedLocation.lng());
+  testMarkers[testMarkers.length-1].setMap(null);
+  testMarkers.splice(testMarkers.length-1, 1);
+  $("#markerData > div:last-child").remove();
 }
