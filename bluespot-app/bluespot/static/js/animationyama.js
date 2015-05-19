@@ -10,6 +10,10 @@
  var sdata = {};
  var elevations = [];//new Array(d.length);
  var d;
+ var spots = []; //#spots
+ var takaos; //#sweets
+
+ var takaoClusterer;
 
   var lineCoordinates = [];
   var locations = [];
@@ -49,15 +53,15 @@ function initialize() {
    elevator = new google.maps.ElevationService();
   // Add a listener for the click event and call getElevation on that location
   // google.maps.event.addListener(map, 'click', getElevation);
-  google.maps.event.addListener(map, 'click', setMarker);
-  google.maps.event.addListener(map, 'rightclick', removeMarker);
+  // google.maps.event.addListener(map, 'click', setMarker);
+  // google.maps.event.addListener(map, 'rightclick', removeMarker);
   run();
 
   console.log(elevations);
   markers = null;
   //Clusterer
   var mcOptions = {gridSize: 50, maxZoom: 15};
-  var markerCluster = new MarkerClusterer(map, markers);
+  // var markerCluster = new MarkerClusterer(map, markers);
 
 
   for (var cord in lineCoordinates){
@@ -103,7 +107,7 @@ function initialize() {
       });
 
       // animateCircle();
-      //elevate();
+      // elevate();
     }
 
 // Use the DOM setInterval() function to change the offset of the symbol
@@ -158,7 +162,10 @@ function spot1(){
   // marker
   // ****************** */
   // spots!!!!
-  var spots = [
+  
+  //Changed spots --> spotsRaw
+  //spots will be used for #spots or with add/remove functionality
+  spotsRaw = [
     ['<div><h3><a href="" class="arrow">高尾山</a></h3><br>業種：GOAL </div>',35.63109133567183, 139.2564631998539,'icon_default', '高尾山', '業種：START'],
     ['<div><h3><a href="" class="arrow">高尾山</a></h3><br>業種：GOAL </div>',35.6251172068904, 139.24366101622581,'icon_goal', '高尾山', '業種：GOAL'],
     ['<div><h3><a href="" class="arrow">大見晴亭</a></h3><br>業種：蕎麦 </div>',35.625143369544226, 139.24349203705788,'icon_res', '大見晴亭', '業種：蕎麦'],
@@ -224,7 +231,7 @@ function spot1(){
         }
 
         var spot = new google.maps.Marker({
-          map: map,
+          // map: map,
           position: latlng,
           icon: icons,
           title: name,
@@ -236,9 +243,10 @@ function spot1(){
           infoWindow.setContent(html);
           infoWindow.open(map,spot);
         });
+        spots.push(spot);
   };
-  for(var i = 0; i < spots.length; i++) {
-      var spot = spots[i],
+  for(var i = 0; i < spotsRaw.length; i++) {
+      var spot = spotsRaw[i],
         latlng = new google.maps.LatLng(spot[1], spot[2]),
         category =  spot[3],
         name = spot[0];
@@ -246,12 +254,28 @@ function spot1(){
       createSpot(latlng, category, name);
     }
 
+   $("#spots").change(function(){
+     if (this.checked) {
+      for(var i = 0; i < spots.length; i++) {
+        spots[i].setMap(map);
+      }
+      console.log("added");
+      console.log(spots);
+    } else {
+      for(var i = 0; i < spots.length; i++) {
+        spots[i].setMap(null);
+      }
+      console.log("removed");
+      console.log(spots);
+    }
+  });
+
 }
 
 function takaoCluster ()
 {
     // takao marker cluster
-  var takaos = []
+  takaos = []
   var takao = [
       [35.63109133567183, 139.2564631998539],
       [35.63107825531919, 139.25645783543587],
@@ -419,7 +443,16 @@ function takaoCluster ()
         });
     takaos.push(marker)
   };
-  var markerCluster = new MarkerClusterer(map, takaos);
+  takaoClusterer = new MarkerClusterer(map, takaos);
+  takaoClusterer.clearMarkers();
+
+  $("#sweets").change(function(){
+     if (this.checked) {
+      takaoClusterer.addMarkers(takaos);
+    } else {
+      takaoClusterer.clearMarkers(); 
+    }
+  });
 }
 
 function elevate () {

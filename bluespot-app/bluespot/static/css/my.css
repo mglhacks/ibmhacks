@@ -12,3 +12,6 @@ html, body, #map-canvas {
 	cursor: pointer;
 	position: relative;
 }
+.img-cur {
+cursor: url(/static/img/ant.png), auto;
+}
